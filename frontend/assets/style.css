@@ -1,0 +1,398 @@
+/* =========================================================
+   AI Engineering Copilot — Dark Mode Theme
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Root Variables ─────────────────────────────────────── */
+:root {
+  --bg-primary:     #0d1117;
+  --bg-secondary:   #161b22;
+  --bg-tertiary:    #1c2230;
+  --bg-card:        #1e2533;
+  --border:         #30363d;
+  --border-light:   #21262d;
+
+  --accent:         #6e40c9;
+  --accent-hover:   #8a5cf5;
+  --accent-glow:    rgba(110, 64, 201, 0.25);
+  --accent-light:   #a78bfa;
+
+  --success:        #3fb950;
+  --warning:        #d29922;
+  --danger:         #f85149;
+  --info:           #58a6ff;
+
+  --text-primary:   #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted:     #484f58;
+
+  --radius-sm:      6px;
+  --radius-md:      10px;
+  --radius-lg:      16px;
+  --shadow:         0 4px 24px rgba(0,0,0,0.4);
+  --transition:     0.2s ease;
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+html, body, [data-testid="stAppViewContainer"] {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+[data-testid="stSidebar"] {
+  background: var(--bg-secondary) !important;
+  border-right: 1px solid var(--border) !important;
+  padding-top: 1rem;
+}
+
+[data-testid="stSidebar"] .stMarkdown h1,
+[data-testid="stSidebar"] .stMarkdown h2,
+[data-testid="stSidebar"] .stMarkdown h3 {
+  color: var(--accent-light) !important;
+}
+
+/* ── Main Header ─────────────────────────────────────────── */
+.main-header {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.main-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--info) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.5rem 0;
+}
+
+.main-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ── Cards ───────────────────────────────────────────────── */
+.copilot-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.copilot-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-glow), var(--shadow);
+}
+
+/* ── Answer Box ──────────────────────────────────────────── */
+.answer-box {
+  background: linear-gradient(135deg, #1a2332 0%, #1e2a3a 100%);
+  border: 1px solid var(--info);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+/* ── Source Chips ────────────────────────────────────────── */
+.source-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin: 4px 4px 4px 0;
+  font-family: 'JetBrains Mono', monospace;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.source-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+}
+
+.source-chip .score {
+  background: var(--accent-glow);
+  color: var(--accent-light);
+  border-radius: 10px;
+  padding: 1px 6px;
+  font-size: 0.72rem;
+}
+
+/* ── Search Result ───────────────────────────────────────── */
+.search-result {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 0.75rem;
+  transition: border-color var(--transition);
+}
+
+.search-result:hover {
+  border-color: var(--accent);
+}
+
+.search-result .result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.search-result .filename {
+  font-weight: 600;
+  color: var(--accent-light);
+  font-size: 0.88rem;
+}
+
+.search-result .page-badge {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.search-result .result-text {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  border-top: 1px solid var(--border-light);
+  padding-top: 0.75rem;
+}
+
+/* ── Score Bar ───────────────────────────────────────────── */
+.score-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.score-bar-bg {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.score-label {
+  font-size: 0.75rem;
+  color: var(--accent-light);
+  font-family: 'JetBrains Mono', monospace;
+  min-width: 48px;
+  text-align: right;
+}
+
+/* ── Summary Box ─────────────────────────────────────────── */
+.summary-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  margin-top: 1rem;
+}
+
+.summary-box .summary-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.summary-meta .meta-badge {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.summary-content {
+  color: var(--text-primary);
+  font-size: 0.93rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+/* ── Status Badge ────────────────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-badge.healthy  { background: rgba(63,185,80,0.15); color: var(--success); border: 1px solid var(--success); }
+.status-badge.degraded { background: rgba(210,153,34,0.15); color: var(--warning); border: 1px solid var(--warning); }
+.status-badge.error    { background: rgba(248,81,73,0.15);  color: var(--danger);  border: 1px solid var(--danger); }
+
+/* ── Stat Tile ───────────────────────────────────────────── */
+.stat-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.5rem;
+  text-align: center;
+}
+
+.stat-tile .stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-light);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.stat-tile .stat-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* ── Document Row ────────────────────────────────────────── */
+.doc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.2rem;
+  margin-bottom: 0.5rem;
+  transition: border-color var(--transition);
+}
+
+.doc-row:hover { border-color: var(--accent); }
+
+.doc-row .doc-name {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.doc-row .doc-meta {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Streamlit Overrides ─────────────────────────────────── */
+.stButton > button {
+  background: linear-gradient(135deg, var(--accent) 0%, #5b2d9e 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 500 !important;
+  transition: opacity var(--transition), transform var(--transition) !important;
+}
+
+.stButton > button:hover {
+  opacity: 0.9 !important;
+  transform: translateY(-1px) !important;
+}
+
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea,
+.stSelectbox > div > div {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px var(--accent-glow) !important;
+}
+
+[data-testid="stFileUploader"] {
+  background: var(--bg-secondary) !important;
+  border: 2px dashed var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  transition: border-color var(--transition) !important;
+}
+
+[data-testid="stFileUploader"]:hover {
+  border-color: var(--accent) !important;
+}
+
+.stSpinner > div {
+  border-top-color: var(--accent) !important;
+}
+
+div[data-testid="stAlert"] {
+  border-radius: var(--radius-sm) !important;
+  background: var(--bg-card) !important;
+}
+
+.stTabs [data-baseweb="tab-list"] {
+  background: var(--bg-secondary) !important;
+  border-radius: var(--radius-md) !important;
+  gap: 4px;
+}
+
+.stTabs [data-baseweb="tab"] {
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 0.88rem !important;
+}
+
+.stTabs [aria-selected="true"] {
+  background: var(--accent) !important;
+  color: white !important;
+}
+
+hr { border-color: var(--border) !important; }
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }

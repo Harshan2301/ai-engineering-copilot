@@ -1,0 +1,56 @@
+# ── Environment ────────────────────────────────────────────────────────────
+.env
+*.env.local
+
+# ── Python ─────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ── ChromaDB Persistence ────────────────────────────────────────────────────
+chroma_data/
+backend/chroma_data/
+
+# ── Uploaded Files ──────────────────────────────────────────────────────────
+uploads/
+backend/uploads/
+
+# ── Logs ────────────────────────────────────────────────────────────────────
+logs/
+*.log
+backend/logs/
+
+# ── Testing ─────────────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# ── Docker ──────────────────────────────────────────────────────────────────
+.dockerignore
+
+# ── IDEs ────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Streamlit ───────────────────────────────────────────────────────────────
+.streamlit/secrets.toml

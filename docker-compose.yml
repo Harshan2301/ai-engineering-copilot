@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  # ── FastAPI Backend ─────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: copilot-backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - CHROMA_PERSIST_DIR=/data/chroma
+      - UPLOAD_DIR=/data/uploads
+      - ALLOWED_ORIGINS=http://localhost:8501,http://frontend:8501
+    volumes:
+      - chroma_data:/data/chroma
+      - upload_data:/data/uploads
+      - backend_logs:/app/logs
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/health').raise_for_status()"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    networks:
+      - copilot-net
+
+  # ── Streamlit Frontend ──────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: copilot-frontend
+    restart: unless-stopped
+    environment:
+      - BACKEND_URL=http://backend:8000/api/v1
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "8501:8501"
+    networks:
+      - copilot-net
+
+# ── Named volumes ───────────────────────────────────────────────────────────
+volumes:
+  chroma_data:
+    driver: local
+  upload_data:
+    driver: local
+  backend_logs:
+    driver: local
+
+# ── Networks ────────────────────────────────────────────────────────────────
+networks:
+  copilot-net:
+    driver: bridge
